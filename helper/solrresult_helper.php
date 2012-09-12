@@ -18,7 +18,7 @@
  * Generates an HTML solr facet link.  
  * First param is the solr results array.
  * Second param is the facet field name in solr interface which we dont want to use again in our new query
- * 		so i unset it from original search array.
+ * 		so i unset it out from original search array.
  * Third is URL which same as Codeigniter Anchor helper: controller/method
  * Last param is the original search array.
  * 
@@ -44,7 +44,7 @@ if ( ! function_exists('crtFacet'))
 				foreach ($oriSearchKeyword as $fieldkey => $fieldvalue) {
 					$facetLink .= '&'.$fieldkey.'='.$fieldvalue;
 				}
-				$facetLink .= "&mysubmit=%E6%90%9C%E7%B4%A2%E6%9C%BA%E6%9E%84'>".$resultArr[$i]."&nbsp;(".$resultArr[$i+1].")</a>";
+				$facetLink .= "&mysubmit=whatever your submit name is'>".$resultArr[$i]."&nbsp;(".$resultArr[$i+1].")</a>";
 				$facetLink .= "</div>";
 			}
 			$facetLink .= "</div>";
