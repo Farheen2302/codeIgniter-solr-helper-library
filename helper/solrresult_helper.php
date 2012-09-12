@@ -56,12 +56,21 @@ if ( ! function_exists('crtFacet'))
 // ------------------------------------------------------------------------
 /**
  * Heading
- *
+ * Generates an json data for highcharts.js pie chart
+ * 
  * 
  * @access	public
  * @param	array 		$resultArr: Facet array from solr interface
  * @param	int 		$int: more then n index combine array value into other
- * @return	string 		return json for  	
+ * @return	string 		return json	
+ * example: how to use this FacetForPieChart()
+ *		js code
+ *		series: [{
+ *                 type: 'pie',
+ *                 name: 'Browser share',
+ *                 data: <?php print_r(FacetForPieChart($countryFacet,15)); ?>
+ *      }]
+ *
  */
 
 if ( ! function_exists('FacetForPieChart'))
@@ -104,7 +113,8 @@ if ( ! function_exists('FacetForPieChart'))
  * @access	public
  * @param	array 		$resultArr: Facet array from solr interface
  * @param	int 		$int: more then n index combine array value into other
- * @return	string 		return json for  	
+ * @return	string 		return array(title,data) for BarChart
+ * 	
  */
 
 if ( ! function_exists('FacetForBasicBarChart'))
