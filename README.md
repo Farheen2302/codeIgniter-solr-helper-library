@@ -50,6 +50,7 @@ $format = 'XML'/'JSON'/'PHP'/'PYTHON', $offset and $limits are optional argument
 		//varables
 		$solr_conf = array('host' => '10.0.15.xx' , 'port' => '8080' , 'DB' => 'myDatabase');
 		$inputArr = array('EnName_t' => 'Academy' , 'Country_t' => 'China' );
+		
 	
 		//call methods	
 		$this->solr_url->get_base_url($solr_conf);
@@ -108,6 +109,7 @@ $fqInput is a array() contains solr field($key) and keyword($value)
 		//varables
 		$solr_conf = array('host' => '10.0.15.xx' , 'port' => '8080' , 'DB' => 'myDatabase');
 		$inputArr = array('EnName_t' => 'Academy' , 'Country_t' => 'China' );
+		$facetArr = array('IBType_t','InstClassified_s');
 	
 		//call methods	
 		$this->solr_url->get_base_url($solr_conf);
@@ -115,6 +117,8 @@ $fqInput is a array() contains solr field($key) and keyword($value)
 		$this->solr_url->getSort('EnName_t','desc');
 		$this->solr_url->getFacet($facetArr,array('IBType_t'=>'index'),'3');
 		$this->solr_url->getFQ(array('ESI_Fields14_S'=>'Engineering'));
+		
+		//create URL now!!
 		echo $this->solr_url->echo_solr_url('json',"0","20");
 	}
 
