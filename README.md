@@ -6,10 +6,54 @@ As we know The [Active Record] is built in CI framework for doing CURD with mysq
 
 Current Library is version 2, solr api is very powerful so I only covered most of mine own functions for using solr. I will continually update this Library until it meet my own requirements.
 
-Toworrow I will update a helper to help CI user prase solr results in JSON/PHP formats.
+##New helper updated!!
+I updated a helper to help CI user parse solr results in JSON/PHP formats. 
+
+**Parse json format**
+
+arg1 = solr query url;arg2 = facet array
+	
+	solrResult_json_parser($url,$facetinput)
+	
+**Return array() with 'count','results','facet'**
+	
+**Parse PHP format**
+
+arg1 = solr query url;arg2 = facet array
+	
+	solrResult_php_parser($url,$facetinput)
+
+**Return array() with 'count','results','facet'**
+
+
+###Parse exmple with json object###
+	
+	//variables
+	$inputArr = array('EnName_t' => 'Academy' , 'Country_t' => 'China' );
+	$facetArr = array('IBType_t','InstClassified_s');
+	
+	//Parse json object
+	$solr = solrResult_json_parser($url,$facetArr);
+	
+	//get count value
+	$count = $solr['count'];
+	//get results
+	$results = $solr['results'];//json object
+	
+	//example print out all the english name
+	foreach ($results as $key => $value) {
+		echo $value->EnName_t.'<br>';
+	}
+	
+	//get facet 
+	$facet = $solr['facet'];//array()
+	
+	//example print out facet with number
+	foreach ($facet as $key => $value) {
+		echo $value[0].":".$value[1]."<br>";
+	}
 
 ## Simple Query ##
-
 ### 1 Config "Host" "Port" and "Database name" ###
 	get_base_url($config)
 Sometime I need to use defferent solr API from defferent host so I need some sort of way to config it. if you only use one API, you should put $solr_conf in config.php to make it as a global variable
@@ -98,7 +142,7 @@ $fqInput is a array() contains solr field($key) and keyword($value)
 	$this->solr_url->getFQ(array('ESI_Fields14_S'=>'Engineering'));
 	
 	
-### Full example for Simple Query ###
+### Full example for Advanced Query ###
 	class Contraller extends CI_Controller {	
 		function Institute () {
 			parent::__construct();
