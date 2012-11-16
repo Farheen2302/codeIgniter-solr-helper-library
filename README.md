@@ -1,4 +1,4 @@
-# Codeigniter solr Query URL generator #
+# Codeigniter solr Query URL generator#
 
 I start program with Codeigniter framework recently and i fall in love with it, specially the [Active Record]. So I decided to use Codeigniter in my current Web Project.
 
