@@ -29,14 +29,15 @@ arg1 = solr query url;arg2 = facet array
 ###Parse exmple with json object###
 	
 	//variables
-	$inputArr = array('EnName_t' => 'Academy' , 'Country_t' => 'China' );
-	$facetArr = array('IBType_t','InstClassified_s');
+	$url = $this->solr_url->echo_solr_url('json',"0","20");//Query url created from solr_url.php class
+	$facetArr = array('IBType_t','InstClassified_s');//which feild we need for put into facet	
 	
 	//Parse json object
 	$solr = solrResult_json_parser($url,$facetArr);
 	
 	//get count value
 	$count = $solr['count'];
+	
 	//get results
 	$results = $solr['results'];//json object
 	
@@ -52,6 +53,23 @@ arg1 = solr query url;arg2 = facet array
 	foreach ($facet as $key => $value) {
 		echo $value[0].":".$value[1]."<br>";
 	}
+	
+**Output: Print out message**
+
+	**JSON parser**
+	**Number of results:**
+	7
+	**Solr results with EnName_t:**
+	Chinese Academy of Science CAS (1)
+	Library of the Chinese Academy of Sciences
+	Chinese Academy of Agricultural Sciences
+	Graduate School of the Chinese Academy of Science
+	Jiangsu Academy of Agricultural Sciences
+	China Academy of Traditional Chinese Medicine
+	Academy of Mathematics and System Sciences CAS
+	**Facet information:**
+	Webometrics:7
+	研究院/所/中心:2
 
 ## Simple Query ##
 ### 1 Config "Host" "Port" and "Database name" ###
